@@ -6,10 +6,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace Factory.Controllers
 {
-  public class EngineersController : Controller // allows EngineersController to operate as a Controller
+  public class EngineersController : Controller
   {
-    private readonly FactoryContext _db; // Defining the Database as
-    public EngineersController(FactoryContext db) //constructor for the controller 
+    private readonly FactoryContext _db;
+    public EngineersController(FactoryContext db) 
     {
       _db = db;
     }

@@ -7,15 +7,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Factory.Controllers
 {
-  // [Authorize]
   public class MachinesController : Controller
   {
     private readonly FactoryContext _db;
-    // private readonly UserManager<ApplicationUser> _userManager;
 
     public MachinesController(FactoryContext db)
     {
-      // _userManager = userManager;
       _db = db;
     }
 
