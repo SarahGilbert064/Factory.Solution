@@ -36,8 +36,8 @@ namespace Factory.Controllers
     public ActionResult Details(int id)
     {
       var thisEngineer = _db.Engineers //return Engineer name and id 
-          .Include(engineer => engineer.JoinEntries) //find childs(JoinEntries) related to the engineer
-          .ThenInclude(join => join.Child) //With all join entries add the related child 
+          .Include(engineer => engineer.JoinEntries) //find machines(JoinEntries) related to the engineer
+          .ThenInclude(join => join.Machine) //With all join entries add the related machine
           .FirstOrDefault(engineer => engineer.EngineerId == id); // find the Engineer that matches the ID
       return View(thisEngineer);
     }
