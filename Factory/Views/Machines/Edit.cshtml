@@ -18,6 +18,9 @@
     @Html.Label("Select a Engineer")
     @Html.DropDownList("EngineerId") 
 
+    @Html.LabelFor(model => model.InstallDate)
+    @Html.EditorFor(model => model.InstallDate)
+
     <input type="submit" value="Save" />
 }
 
