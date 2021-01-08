@@ -2,11 +2,11 @@
   Layout = "_Layout";
 }
 
-@model Template.Models.Child
+@model Factory.Models.Machine
 
-<h2>Are you sure you want to delete this child?</h2>
+<h2>Are you sure you want to delete this machine?</h2>
 
-@Html.DisplayNameFor(model => model.ChildName): @Html.DisplayFor(model => model.ChildName)
+@Html.DisplayNameFor(model => model.MachineName): @Html.DisplayFor(model => model.MachineName)
 
 @using (Html.BeginForm())
 {

@@ -2,23 +2,23 @@
   Layout = "_Layout";
 }
 
-@model Template.Models.Child
+@model Factory.Models.Machine
 
-<h2>CHILD Details</h2>
+<h2>Machine Details</h2>
 <hr />
-<h3>@Html.DisplayNameFor(model => model.ChildName): @Html.DisplayFor(model => model.ChildName)</h3>
+<h3>@Html.DisplayNameFor(model => model.MachineName): @Html.DisplayFor(model => model.MachineName)</h3>
 
 @if(Model.JoinEntries.Count == 0)
 {
-  <p>This CHILD does not belong to any PARENTS</p>
+  <p>This machine currently has no licensed engineers to work on it.</p>
 }
 else
 {
-  <h4>PARENTS the CHILD belongs to:</h4>
+  <h4>Engineers licensed to work on this machine:</h4>
   @* <ul>
-    @foreach(var join in Model.Parents)
+    @foreach(var join in Model.Engineer)
     {
-      <li>@join.Parent.ParentName</li>
+      <li>@join.Engineer.EngineerName</li>
     }
   </ul> *@
 }
@@ -26,16 +26,16 @@ else
   <ul>
   @foreach(var join in Model.JoinEntries)
   {
-    <li>@join.Parent.ParentName</li>
-    @using (Html.BeginForm("DeleteParent", "Childs"))
+    <li>@join.Engineer.EngineerName</li>
+    @using (Html.BeginForm("DeleteEngineer", "Machines"))
     {
-      @Html.Hidden("joinId", @join.ParentChildId)
+      @Html.Hidden("joinId", @join.EngineerMachineId)
       <input type="submit" value="Delete"/>
     }
   }
   </ul>
   
-<p>@Html.ActionLink("Add a parent", "AddParent", new { id = Model.ChildId })</p>
+<p>@Html.ActionLink("Add a engineer", "AddEngineer", new { id = Model.MachineId })</p>
 <p>@Html.ActionLink("Back to list", "Index")</p>
-<p>@Html.ActionLink("Edit Child", "Edit", new { id = Model.ChildId })</p>
-<p>@Html.ActionLink("Delete Child", "Delete", new { id = Model.ChildId })</p>
+<p>@Html.ActionLink("Edit Machine", "Edit", new { id = Model.MachineId })</p>
+<p>@Html.ActionLink("Delete Machine", "Delete", new { id = Model.MachineId })</p>

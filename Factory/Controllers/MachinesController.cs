@@ -37,7 +37,7 @@ namespace Factory.Controllers
       // var currentUser = await _userManager.FindByIdAsync(userId);
       // item.User = currentUser;
       _db.Machines.Add(machine);
-      if ((Engineer)Id != 0)
+      if (EngineerId != 0)
       {
         _db.EngineerMachine.Add(new EngineerMachine() { EngineerId = EngineerId, MachineId = Machine.MachineId });
       }
@@ -56,7 +56,7 @@ namespace Factory.Controllers
 
     public ActionResult Edit(int id)
     {
-      var thisMachine = _db.Mahcines.FirstOrDefault(machine => machine.MachineId == id);
+      var thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
       ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "EngineerName"); // ViewBag only transfers data from controller to view
       return View(thisMachine);
     }
@@ -114,6 +114,5 @@ namespace Factory.Controllers
       _db.SaveChanges();
       return RedirectToAction("Index");
     }
-
   }
 }
