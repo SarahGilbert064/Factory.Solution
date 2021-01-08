@@ -1,11 +1,11 @@
-namespace Template.Models
+namespace Factory.Models
 {
-  public class ParentChild
+  public class EngineerMachine
   {
-    public int ParentChildId { get; set; }
-    public int ParentId { get; set; }
-    public int ChildId { get; set; }
-    public Child Child { get; set; }
-    public Parent Parent { get; set; }
+    public int EngineerMachineId { get; set; }
+    public int EngineerId { get; set; }
+    public int MachineId { get; set; }
+    public Machine Machine { get; set; }
+    public Engineer Engineer { get; set; }
   }
 }

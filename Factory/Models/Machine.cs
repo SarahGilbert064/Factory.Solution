@@ -1,17 +1,17 @@
 using System.Collections.Generic;
 
-namespace Template.Models
+namespace Factory.Models
 {
-  public class Child
+  public class Machine
   {
-    public Child()
+    public Machine()
     {
-      this.JoinEntries = new HashSet<ParentChild>();
+      this.JoinEntries = new HashSet<EngineerMachine>();
     }
 
-    public int ChildId { get; set; }
-    public string ChildName { get; set; }
+    public int MachineId { get; set; }
+    public string MachineName { get; set; }
 
-    public ICollection<ParentChild> JoinEntries { get; }
+    public ICollection<EngineerMachine> JoinEntries { get; }
   }
 }  
