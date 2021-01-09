@@ -1,16 +1,20 @@
-# **SillystringsFactory.Solution**
+# **Factory.Solution**
 Project Created on: 2021-01-08<br>
 
 
 ## **Project Description**
 
-This project was created to help us further our knowledge with using join statements to help connect tables in our database. We also were able to get additional practice with using many to many relationships with our tables in our datababse. This application is a univeristy registrar that helps keep track of students and courses. Here is a breakdown of the features it has, their functionality, and their benefits.
+Welcome to Silly String'z Factory Outlet! This fun application was created to further my knowledge and skills by creating and managing a database using migrations and by building my own 'many to many' relationships in Entity with the use of join entities. The user will be able to manage all of their current machines and licensed engineers for the factory.
 
-//USER STORIES PUT IN TABLE (optional)
-* As a registrar, you will be able to enter a student, to help keep track of all students enrolled at this University. The student will be able to provide their name and their date of enrollment.
-* As a registrar, you will be able to enter a course, so you can keep track of all of the courses the University offers. You should be able to provide a course name and a course number (ex. HIST100).
-* As a registrar, you will to be able to assign students to a course, so that teachers know which students are in their course. A course can have many students and a student can take many courses at the same time.
-
+||| 
+| ID | User Story | Accepted |
+|---------|-----------|--------|
+| US01 | As the factory manager, I need to be able to see a list of all engineers, and I need to be able to see a list of all machines.| True |
+| US02 | "As the factory manager, I need to be able to select a engineer, see their details, and see a list of all machines that engineer is licensed to repair. I also need to be able to select a machine, see its details, and see a list of all engineers licensed to repair it." | True |
+| US03 | "As the factory manager, I need to add new engineers to our system when they are hired. I also need to add new machines to our system when they are installed." | True |
+| US04 | "As the factory manager, I should be able to add new machines even if no engineers are employed. I should also be able to add new engineers even if no machines are installed." | True |
+| US05 | "As the factory manager, I need to be able to add or remove machines that a specific engineer is licensed to repair. I also need to be able to modify this relationship from the other side, and add or remove engineers from a specific machine." | True |
+| US06 | "I should be able to navigate to a splash page that lists all engineers and machines. Users should be able to click on an individual engineer or machine to see all the engineers/machines that belong to it." | False | 
 
 
 ## **Required for Use**
@@ -108,29 +112,29 @@ Then open MySQL Workbench and select the Local instance 3306 server. You will ne
 ### **Install/Setup Project** ###
 
 **Option 1** (download zip file)
-1) Copy and paste the following GitHub project link into your web browser's url bar and hit enter/return. https://github.com/RMGit-it/Template.Solution.git
+1) Copy and paste the following GitHub project link into your web browser's url bar and hit enter/return. https://github.com/SarahGilbert064/Factory.Solution.git
 2) Download a .zip copy the repository by clicking on the large green "Code" button near the upper right corner of the screen.
 3) Right click the .zip file and extract(unzip) it's contents.
-4) Open your computer's terminal/console, and navigate to folder called "__Template.Solution__". 
+4) Open your computer's terminal/console, and navigate to folder called "__Factory.Solution__". 
 
 
 **Option 2** (via git console/terminal)
 1) Open your Git enabled terminal/console and navigate to a directory that you wish to download this project to.
 2) Type the following line of code into your terminal/console to automatically download the project to your current direcory and hit return/enter
 
-    <code>git clone https://github.com/RMGit-it/Template.Solution.git</code>
+    <code>git clone https://github.com/SarahGilbert064/Factory.Solution.git</code>
 
-3) Once the project has finished downloading, use the terminal/console to navigate to the "__Template.Solution__" folder of the project.
+3) Once the project has finished downloading, use the terminal/console to navigate to the "__Factory.Solution__" folder of the project.
 
 
 **Setup Database Connection**
 
-Create a new file in the root directory of the __Template.Solution/Template__ directory named "appsettings.json".  Copy and past the following code inside of the file.
+Create a new file in the root directory of the __Factory.Solution/Factory__ directory named "appsettings.json".  Copy and past the following code inside of the file.
 
 ```
 {
   "ConnectionStrings": {
-      "DefaultConnection": "Server=localhost;Port=3306;database=Template;uid=YourId;pwd=YourPassword;"
+      "DefaultConnection": "Server=localhost;Port=3306;database=YourId;uid=YourId;pwd=YourPassword;"
   }
 }
 ```
@@ -154,25 +158,10 @@ You can now type the follow code to launch the program...
 The program should launch using your default web browser at URL: localhost:5000.
 
 ## **SQL Schema**
-REPLACE WITH YOUR PROJECT DATABASE
-
-1 - In SQL Workbench 
-2 - On the top nav bar click the server drop down 
-3 - Select Data export 
-4 - Select your Scema in the table 
-5 - Select Dump Structure only from dropdown
-6 - Select Export to self contain file radio button 
-7 - Rename the file First_Last_project.SQL
-8 - Select Include Create Scema check box 
-9 - Start Export
-10 - Open the Dump
-11 - Remove all "--" "/*" content 
-12 - Add USE `ProjectName`; to the top of the file
-13 - Then delete these instuctions! 
 
 ```
-CREATE DATABASE  IF NOT EXISTS `template` 
-USE `template`;
+CREATE DATABASE  IF NOT EXISTS `sarah_gilbert`
+USE sarah_gilbert;
 
 DROP TABLE IF EXISTS `__efmigrationshistory`;
 CREATE TABLE `__efmigrationshistory` (
@@ -181,35 +170,35 @@ CREATE TABLE `__efmigrationshistory` (
   PRIMARY KEY (`MigrationId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-DROP TABLE IF EXISTS `courses`;
-CREATE TABLE `courses` (
-  `CourseId` int NOT NULL AUTO_INCREMENT,
-  `CourseName` longtext,
-  PRIMARY KEY (`CourseId`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+DROP TABLE IF EXISTS `engineermachine`;
+CREATE TABLE `engineermachine` (
+  `EngineerMachineId` int NOT NULL AUTO_INCREMENT,
+  `EngineerId` int NOT NULL,
+  `MachineId` int NOT NULL,
+  PRIMARY KEY (`EngineerMachineId`),
+  KEY `IX_EngineerMachine_EngineerId` (`EngineerId`),
+  KEY `IX_EngineerMachine_MachineId` (`MachineId`),
+  CONSTRAINT `FK_EngineerMachine_Engineers_EngineerId` FOREIGN KEY (`EngineerId`) REFERENCES `engineers` (`EngineerId`) ON DELETE CASCADE,
+  CONSTRAINT `FK_EngineerMachine_Machines_MachineId` FOREIGN KEY (`MachineId`) REFERENCES `machines` (`MachineId`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-DROP TABLE IF EXISTS `coursestudent`;
-CREATE TABLE `coursestudent` (
-  `CourseStudentId` int NOT NULL AUTO_INCREMENT,
-  `CourseId` int NOT NULL,
-  `StudentId` int NOT NULL,
-  PRIMARY KEY (`CourseStudentId`),
-  KEY `IX_CourseStudent_CourseId` (`CourseId`),
-  KEY `IX_CourseStudent_StudentId` (`StudentId`),
-  CONSTRAINT `FK_CourseStudent_Courses_CourseId` FOREIGN KEY (`CourseId`) REFERENCES `courses` (`CourseId`) ON DELETE CASCADE,
-  CONSTRAINT `FK_CourseStudent_Students_StudentId` FOREIGN KEY (`StudentId`) REFERENCES `students` (`StudentId`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+DROP TABLE IF EXISTS `engineers`;
+CREATE TABLE `engineers` (
+  `EngineerId` int NOT NULL AUTO_INCREMENT,
+  `StartDate` datetime(6) NOT NULL,
+  `EngineerName` longtext,
+  PRIMARY KEY (`EngineerId`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
-DROP TABLE IF EXISTS `students`;
-CREATE TABLE `students` (
-  `StudentId` int NOT NULL AUTO_INCREMENT,
-  `StudentName` longtext,
-  PRIMARY KEY (`StudentId`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+DROP TABLE IF EXISTS `machines`;
+CREATE TABLE `machines` (
+  `MachineId` int NOT NULL AUTO_INCREMENT,
+  `MachineName` longtext,
+  `InstallDate` datetime(6) NOT NULL DEFAULT '0001-01-01 00:00:00.000000',
+  PRIMARY KEY (`MachineId`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```
 
-
-## **Usage / Examples**
 
 ## **Planned Features**
 No new features are planned at this time.
@@ -230,14 +219,14 @@ There are no known bugs
 * dotnet script, REPL
   
 ## **Authors and Contributors**
-Authored by: YOUR NAME
+Authored by: Sarah Gilbert
 
 ## **Contact**
-YOUR NAME AND EMAIL
+Email: sarahgilbert064@gmail.com
 
 ## **License**
 
-GPLv3
+Copyright (c) 2020 Sarah Gilbert
+This software is licensed under the MIT license
 
-Copyright © 2020 YOUR NAME
-
+ <a href="#top">Back to top</a>
