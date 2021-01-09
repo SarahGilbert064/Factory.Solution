@@ -30,9 +30,6 @@ namespace Factory.Controllers
     [HttpPost]
     public ActionResult Create(Machine machine, int EngineerId)
     {
-      // var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      // var currentUser = await _userManager.FindByIdAsync(userId);
-      // item.User = currentUser;
       _db.Machines.Add(machine);
       if (EngineerId != 0)
       {
@@ -54,7 +51,7 @@ namespace Factory.Controllers
     public ActionResult Edit(int id)
     {
       var thisMachine = _db.Machines.FirstOrDefault(machine => machine.MachineId == id);
-      ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "EngineerName"); // ViewBag only transfers data from controller to view
+      ViewBag.EngineerId = new SelectList(_db.Engineers, "EngineerId", "EngineerName"); 
       return View(thisMachine);
     }
     

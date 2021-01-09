@@ -36,25 +36,25 @@ namespace Factory.Controllers
 
     public ActionResult Details(int id)
     {
-      var thisEngineer = _db.Engineers //return Engineer name and id 
-          .Include(engineer => engineer.JoinEntries) //find machines(JoinEntries) related to the engineer
-          .ThenInclude(join => join.Machine) //With all join entries add the related machine
-          .FirstOrDefault(engineer => engineer.EngineerId == id); // find the Engineer that matches the ID
+      var thisEngineer = _db.Engineers 
+          .Include(engineer => engineer.JoinEntries) 
+          .ThenInclude(join => join.Machine)
+          .FirstOrDefault(engineer => engineer.EngineerId == id);
       return View(thisEngineer);
     }
 
     public ActionResult Edit(int id)
     {
-      var thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id); // finds the first match and assigns it to "thisEngineer".
+      var thisEngineer = _db.Engineers.FirstOrDefault(engineer => engineer.EngineerId == id); 
       return  View(thisEngineer);
     }
 
     [HttpPost]
-    public ActionResult Edit(Engineer engineer) //engineer is an object that contains all properties, not just the ID
+    public ActionResult Edit(Engineer engineer) 
     {
-      _db.Entry(engineer).State = EntityState.Modified; // holding the information in a bucket
-      _db.SaveChanges();// pour the bucket into the database
-      return RedirectToAction("Index"); //returning to index page in engineers
+      _db.Entry(engineer).State = EntityState.Modified; 
+      _db.SaveChanges();
+      return RedirectToAction("Index"); 
     }
 
     public ActionResult Delete(int id)
