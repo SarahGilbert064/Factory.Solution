@@ -14,7 +14,7 @@ Welcome to Silly String'z Factory Outlet! This fun application was created to fu
 | US03 | "As the factory manager, I need to add new engineers to our system when they are hired. I also need to add new machines to our system when they are installed." | True |
 | US04 | "As the factory manager, I should be able to add new machines even if no engineers are employed. I should also be able to add new engineers even if no machines are installed." | True |
 | US05 | "As the factory manager, I need to be able to add or remove machines that a specific engineer is licensed to repair. I also need to be able to modify this relationship from the other side, and add or remove engineers from a specific machine." | True |
-| US06 | "I should be able to navigate to a splash page that lists all engineers and machines. Users should be able to click on an individual engineer or machine to see all the engineers/machines that belong to it." | False | 
+| US06 | "I should be able to navigate to a splash page that lists all engineers and machines. Users should be able to click on an individual engineer or machine to see all the engineers/machines that belong to it." | True | 
 
 
 ## **Required for Use**
